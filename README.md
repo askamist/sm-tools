@@ -1,4 +1,5 @@
-# geocode-to-kml
+# geohash-to-kml
+Takes a list of geohash strings and generates corresponding kml files.
 
 ## Project setup
 ```
