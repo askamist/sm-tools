@@ -1,5 +1,3 @@
 module.exports = {
-  publicPath: process.env.NODE_ENV === 'production'
-    ? '/geohash-to-kml/'
-    : '/'
+  publicPath: process.env.NODE_ENV === 'production' ? '/geohash-to-kml/' : '/'
 }

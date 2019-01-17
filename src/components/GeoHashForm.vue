@@ -14,7 +14,7 @@
 import GeoHash from 'latlon-geohash';
 import JsZip from "jszip"
 import { saveAs } from 'file-saver';
-import getKMLString from '../LatLngToGeoHash';
+import getKMLString from '../LatLngToKML';
 
 export default {
   name: 'GeoHashForm',
