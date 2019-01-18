@@ -2,7 +2,7 @@
   <div class="container">
     <h1 class="has-text-centered is-size-3">{{ msg }}</h1>
     <b-field label="Enter a list GeoHash-s seperated by space">
-      <b-input v-model="geoHashString" maxlength="200" type="textarea">
+      <b-input v-model="geoHashString" maxlength="7000" type="textarea">
       </b-input>
     </b-field>
     <button class="button" v-on:click="generateKML">Download kml files as zip</button>
