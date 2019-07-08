@@ -55,3 +55,16 @@ return `<?xml version="1.0" encoding="UTF-8"?>
 </kml>
 `;
 }
+
+export function northEastSouthWestToKml(ne, sw, name='Custom Kml') {
+  return LatLngToKML(
+    name,
+    [
+      {...ne}, // NE
+      {lat: sw.lat, lon: ne.lon}, // SE
+      {...sw}, // SW
+      {lat: ne.lat, lon: sw.lon}, // NW
+      {...ne}, // NE
+    ]
+  )
+}
