@@ -7,7 +7,7 @@
         type="is-success"
         size="is-medium"
       ></b-icon>
-      <code>small</code> Tools
+      <code>i-s<span class="has-text-success">ma</span>ll</code> tools
     </h1>
     <div class="main-content">
       <!-- use the router-link component for navigation. -->
