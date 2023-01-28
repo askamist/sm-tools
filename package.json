@@ -9,13 +9,15 @@
     "deploy": "git push origin `git subtree split --prefix dist master`:gh-pages --force"
   },
   "dependencies": {
+    "@mdi/font": "^7.1.96",
     "buefy": "^0.7.2",
     "file-saver": "^2.0.0",
     "jszip": "^3.1.5",
     "latlon-geohash": "^1.1.0",
     "string_decoder": "^1.2.0",
     "vee-validate": "^2.2.11",
-    "vue": "^2.5.21"
+    "vue": "^2.5.21",
+    "vue-router": "3"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.3.0",

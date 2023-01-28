@@ -1,17 +1,12 @@
 <template>
   <div id="app">
-    <GeoHashForm msg="Genrate kml from geoHash or LatLng" />
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import GeoHashForm from "./components/GeoHashForm.vue";
-
 export default {
   name: "app",
-  components: {
-    GeoHashForm
-  }
 };
 </script>
 
