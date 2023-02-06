@@ -1,10 +1,8 @@
-import HomeButton from './HomeButton.vue';
-
 <template>
   <div class="container">
     <h1 class="has-text-centered is-size-3">
       <HomeButton></HomeButton>
-      Frames to Timestamp
+      Add Timestamps
     </h1>
     <div class="main-content">
       <div class="tile is-ancestor is-vertical">
@@ -78,7 +76,7 @@ import HomeButton from './HomeButton.vue';
   </div>
 </template>
 <script>
-import HomeButton from "./HomeButton.vue";
+import HomeButton from "../components/HomeButton.vue";
 
 export default {
   components: { HomeButton },

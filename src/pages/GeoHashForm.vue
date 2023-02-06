@@ -70,7 +70,7 @@ import GeoHash from "latlon-geohash";
 import JsZip from "jszip";
 import { saveAs } from "file-saver";
 import { northEastSouthWestToKml } from "../LatLngToKML";
-import HomeButton from "./HomeButton.vue";
+import HomeButton from "../components/HomeButton.vue";
 
 export default {
   name: "GeoHashForm",

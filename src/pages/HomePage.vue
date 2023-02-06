@@ -15,12 +15,17 @@
       <!-- `<router-link>` will render an `<a>` tag with the correct `href` attribute -->
       <router-link to="/geo-hash-to-kml">
         <b-button class="main-button" type="is-primary" expanded>
-          GeoHash to kml converter
+          GeoHash to kml
         </b-button>
       </router-link>
       <router-link to="/frames-to-timestamp">
         <b-button class="main-button" type="is-primary" expanded>
-          Frames to Timestamp (vise versa)
+          Frames to Timestamp
+        </b-button>
+      </router-link>
+      <router-link to="/add-timestamps">
+        <b-button class="main-button" type="is-primary" expanded>
+          Add Timestamps
         </b-button>
       </router-link>
     </div>
@@ -32,8 +37,7 @@
   margin-right: 16px;
 }
 .main-content {
-  min-width: 400px;
-  width: 40vw;
+  max-width: 400px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
