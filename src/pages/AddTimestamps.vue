@@ -21,7 +21,7 @@
         <div class="tile buttons">
           <b-button
             icon-right="plus-thick"
-            type="is-danger"
+            type="is-info"
             @click="addInput"
           ></b-button>
           <b-button
