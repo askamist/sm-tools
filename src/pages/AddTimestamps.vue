@@ -6,70 +6,34 @@
     </h1>
     <div class="main-content">
       <div class="tile is-ancestor is-vertical">
-        <div class="tile">
-          <div class="time-input">
-            <b-field grouped position="is-centered">
-              <b-select placeholder="00" v-model="time.hours">
-                <option
-                  v-for="hour in generateOptions(24)"
-                  :value="hour.value"
-                  :key="hour.value"
-                >
-                  {{ hour.label }}
-                </option>
-              </b-select>
-              <span class="control is-colon">:</span>
-              <b-select placeholder="00" v-model="time.mins">
-                <option
-                  v-for="minute in generateOptions(60)"
-                  :value="minute.value"
-                  :key="minute.value"
-                >
-                  {{ minute.label }}
-                </option>
-              </b-select>
-              <span class="control is-colon">:</span>
-              <b-select placeholder="00" v-model="time.secs">
-                <option
-                  v-for="second in generateOptions(60)"
-                  :value="second.value"
-                  :key="second.value"
-                >
-                  {{ second.label }}
-                </option>
-              </b-select>
-              <span class="control is-colon">:</span>
-              <b-select placeholder="00" v-model="time.frames">
-                <option
-                  v-for="frame in generateOptions(24)"
-                  :value="frame.value"
-                  :key="frame.value"
-                >
-                  {{ frame.label }}
-                </option>
-              </b-select>
-            </b-field>
+        <div class="tile" v-for="(_, index) in timestamps" :key="index">
+          <div class="button-space"></div>
+          <timestamp-input v-model="timestamps[index]"></timestamp-input>
+          <div class="button-space">
+            <b-button
+              icon-right="delete"
+              type="is-danger"
+              @click="deleteInput(index)"
+              v-if="timestamps.length > 1"
+            ></b-button>
           </div>
         </div>
         <div class="tile buttons">
           <b-button
-            icon-right="arrow-down-bold"
-            type="is-info"
-            @click="timeToFrames"
-          ></b-button>
-          <b-button
-            icon-right="arrow-up-bold"
-            type="is-info"
-            @click="framesToTime"
+            icon-right="plus-thick"
+            type="is-danger"
+            @click="addInput"
           ></b-button>
           <b-button
             icon-right="close-thick"
             type="is-danger"
-            @click="clear"
+            @click="reset"
           ></b-button>
         </div>
         <div class="tile">
-          <b-input placeholder="0" type="number" v-model="frames"></b-input>
+          <div class="button-space"></div>
+          <timestamp-input v-model="total" disabled></timestamp-input>
+          <div class="button-space"></div>
         </div>
       </div>
     </div>
@@ -77,95 +41,63 @@
 </template>
 <script>
 import HomeButton from "../components/HomeButton.vue";
+import TimestampInput from "../components/TimestampInput.vue";
 
 export default {
-  components: { HomeButton },
+  components: { HomeButton, TimestampInput },
   data() {
     return {
-      time: {
-        hours: null,
-        mins: null,
-        secs: null,
-        frames: null,
-      },
-      frames: null,
-      framesPerSec: 24,
-      framesPerMin: 60 * 24,
-      framesPerHour: 60 * 60 * 24,
+      timestamps: [this.emptyTimestamp()],
     };
   },
   methods: {
-    resetTime() {
-      this.time.frames = null;
-      this.time.secs = null;
-      this.time.mins = null;
-      this.time.hours = null;
+    reset() {
+      this.timestamps = [this.emptyTimestamp()];
     },
-    resetFrames() {
-      this.frames = null;
+    addInput() {
+      this.timestamps.push(this.emptyTimestamp());
     },
-    formatNumber(value) {
-      return (value < 10 ? "0" : "") + value;
+    deleteInput(index) {
+      this.timestamps.splice(index, 1);
     },
-    generateOptions(till) {
-      const options = [];
-      for (let i = 0; i < till; i++) {
-        options.push({
-          label: this.formatNumber(i),
-          value: i,
-        });
-      }
-      return options;
-    },
-    clear() {
-      this.resetFrames();
-      this.resetTime();
-    },
-    framesToTime() {
-      if (!this.framesEmpty) {
-        let frames = this.frames;
-        this.time.hours = Math.floor(frames / this.framesPerHour);
-        frames = frames % this.framesPerHour;
-        this.time.mins = Math.floor(frames / this.framesPerMin);
-        frames = frames % this.framesPerMin;
-        this.time.secs = Math.floor(frames / this.framesPerSec);
-        frames = frames % this.framesPerSec;
-        this.time.frames = frames;
-      } else {
-        this.$toast.open({
-          message: "Empty form, please input something",
-          type: "is-danger",
-          position: "is-bottom",
-        });
-      }
-    },
-    timeToFrames() {
-      if (!this.timeEmpty) {
-        this.frames =
-          this.time.frames +
-          this.time.secs * 24 +
-          this.time.mins * 60 * 24 +
-          this.time.hours * 60 * 60 * 24;
-      } else {
-        this.$toast.open({
-          message: "Empty form, please input something",
-          type: "is-danger",
-          position: "is-bottom",
-        });
-      }
+    emptyTimestamp() {
+      return {
+        frames: 0,
+        secs: 0,
+        mins: 0,
+        hours: 0,
+      };
     },
   },
   computed: {
-    timeEmpty() {
-      return (
-        this.time.frames === null &&
-        this.time.secs === null &&
-        this.time.mins === null &&
-        this.time.hours === null
-      );
-    },
-    framesEmpty() {
-      return this.frames === null;
+    total() {
+      let frames = 0,
+        secs = 0,
+        mins = 0,
+        hours = 0;
+
+      this.timestamps.map((ts) => {
+        frames += ts.frames;
+        secs += ts.secs;
+        mins += ts.mins;
+        hours += ts.hours;
+      });
+
+      secs += Math.floor(frames / 24);
+      frames = frames % 24;
+
+      mins += Math.floor(secs / 60);
+      secs = secs % 60;
+
+      hours += Math.floor(mins / 60);
+      mins = mins % 24;
+
+      return {
+        frames,
+        secs,
+        mins,
+        hours,
+      };
     },
   },
 };
@@ -186,8 +118,8 @@ export default {
   margin: 1em;
 }
 
-.is-colon {
-  font-size: 1.7rem;
-  line-height: 1.9rem;
+.button-space {
+  margin-left: 12px;
+  width: 36px;
 }
 </style>

@@ -1,55 +1,13 @@
 <template>
   <div class="container">
     <h1 class="has-text-centered is-size-3">
-      <HomeButton></HomeButton>
+      <home-button></home-button>
       Frames to Timestamp
     </h1>
     <div class="main-content">
       <div class="tile is-ancestor is-vertical">
         <div class="tile">
-          <div class="time-input">
-            <b-field grouped position="is-centered">
-              <b-select placeholder="00" v-model="time.hours">
-                <option
-                  v-for="hour in generateOptions(24)"
-                  :value="hour.value"
-                  :key="hour.value"
-                >
-                  {{ hour.label }}
-                </option>
-              </b-select>
-              <span class="control is-colon">:</span>
-              <b-select placeholder="00" v-model="time.mins">
-                <option
-                  v-for="minute in generateOptions(60)"
-                  :value="minute.value"
-                  :key="minute.value"
-                >
-                  {{ minute.label }}
-                </option>
-              </b-select>
-              <span class="control is-colon">:</span>
-              <b-select placeholder="00" v-model="time.secs">
-                <option
-                  v-for="second in generateOptions(60)"
-                  :value="second.value"
-                  :key="second.value"
-                >
-                  {{ second.label }}
-                </option>
-              </b-select>
-              <span class="control is-colon">:</span>
-              <b-select placeholder="00" v-model="time.frames">
-                <option
-                  v-for="frame in generateOptions(24)"
-                  :value="frame.value"
-                  :key="frame.value"
-                >
-                  {{ frame.label }}
-                </option>
-              </b-select>
-            </b-field>
-          </div>
+          <timestamp-input v-model="time"></timestamp-input>
         </div>
         <div class="tile buttons">
           <b-button
@@ -77,9 +35,10 @@
 </template>
 <script>
 import HomeButton from "../components/HomeButton.vue";
+import TimestampInput from "../components/TimestampInput.vue";
 
 export default {
-  components: { HomeButton },
+  components: { HomeButton, TimestampInput },
   data() {
     return {
       time: {
@@ -103,19 +62,6 @@ export default {
     },
     resetFrames() {
       this.frames = null;
-    },
-    formatNumber(value) {
-      return (value < 10 ? "0" : "") + value;
-    },
-    generateOptions(till) {
-      const options = [];
-      for (let i = 0; i < till; i++) {
-        options.push({
-          label: this.formatNumber(i),
-          value: i,
-        });
-      }
-      return options;
     },
     clear() {
       this.resetFrames();
