@@ -90,7 +90,7 @@ export default {
       secs = secs % 60;
 
       hours += Math.floor(mins / 60);
-      mins = mins % 24;
+      mins = mins % 60;
 
       return {
         frames,
