@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h1 class="has-text-centered is-size-3">
-      <HomeButton></HomeButton>
+      <home-button />
       Add Timestamps
     </h1>
     <div class="main-content">

@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h1 class="has-text-centered is-size-3">
-      <home-button></home-button>
+      <home-button />
       Frames to Timestamp
     </h1>
     <div class="main-content">

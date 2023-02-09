@@ -1,8 +1,6 @@
 <template>
   <div class="container">
-    <h1 class="has-text-centered is-size-3">
-      <HomeButton></HomeButton> {{ msg }}
-    </h1>
+    <h1 class="has-text-centered is-size-3"><home-button /> {{ msg }}</h1>
     <b-tabs>
       <b-tab-item label="From geoStrings">
         <b-field label="Enter a list GeoHash-s separated by space">
