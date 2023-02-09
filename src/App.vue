@@ -20,6 +20,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
   margin-top: 60px;
+  margin-bottom: 152px;
 }
 .love {
   color: #f14668;
@@ -31,5 +32,8 @@ footer {
   bottom: 0;
   width: 100%;
   text-align: center;
+  padding: 2rem 1.5rem;
+  z-index: 4;
+  border-top: 1px solid #7957d5;
 }
 </style>
