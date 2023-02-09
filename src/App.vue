@@ -2,7 +2,8 @@
   <div id="app">
     <router-view></router-view>
     <footer class="footer">
-      Made with <b-icon class="love" icon="heart-multiple"></b-icon> by MA
+      Made with <b-icon class="love" icon="heart-multiple"></b-icon> by
+      <span class="has-text-success">MA</span>
     </footer>
   </div>
 </template>
