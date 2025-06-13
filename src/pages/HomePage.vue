@@ -1,12 +1,7 @@
 <template>
   <div class="container">
     <h1 class="has-text-centered is-size-3">
-      <b-icon
-        class="home-icon"
-        icon="home"
-        type="is-success"
-        size="is-medium"
-      ></b-icon>
+      <b-icon class="home-icon" icon="home" type="is-success" size="is-medium"></b-icon>
       <code>i-s<span class="has-text-success">ma</span>ll</code> tools
     </h1>
     <div class="main-content">
@@ -28,6 +23,11 @@
           Add Timestamps
         </b-button>
       </router-link>
+      <router-link to="/interval-timer">
+        <b-button class="main-button" type="is-primary" expanded>
+          Interval Timer
+        </b-button>
+      </router-link>
     </div>
   </div>
 </template>
@@ -36,6 +36,7 @@
   vertical-align: middle;
   margin-right: 16px;
 }
+
 .main-content {
   max-width: 400px;
   margin: 0 auto;
